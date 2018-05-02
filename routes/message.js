@@ -30,5 +30,9 @@ module.exports = {
     const updatedStatus = { status: !req.body.status }
     Message.find({_id: req.body._id}).update(updatedStatus).exec();
     res.send('status updated.');
-  }
+  },
+  deleteAllMessage: (req, res, next) => {
+    Message.find().remove().exec()
+    res.send('message has been deleted.');
+  },
 }
