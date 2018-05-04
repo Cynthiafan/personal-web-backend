@@ -8,8 +8,12 @@ var mongoose = require('mongoose');
 var index = require('./routes/index');
 var app = express();
 const api = require('./routes/apis');
+const config = require('./config');
 // const messages = require('./routes/message');
 // app.use('/messages', messages);
+
+
+app.set('secret', config.secret);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
