@@ -18,7 +18,6 @@ module.exports = {
     });
   },
   getMessage: (req, res, next) => {
-    console.log(req);
     Message.find().exec((err, messages) => {
       res.json(messages.reverse());
     });
@@ -28,7 +27,6 @@ module.exports = {
     res.send('message has been deleted.');
   },
   updateMessage: (req, res, next) => {
-    // console.log(req.headers);
     const updatedStatus = { status: !req.body.params.status }
     Message.find({_id: req.body.params._id}).update(updatedStatus).exec();
     res.send('status updated.');

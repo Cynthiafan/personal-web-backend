@@ -8,14 +8,18 @@ const auth = require('./authenticate');
 
 // assign routes
 router.route('/messages')
-      .post(messages.postMessage)
-      .delete(messages.deleteMessage)
-      .put(messages.updateMessage);
-router.route('/messages/all').delete(messages.deleteAllMessage);
+      .put(messages.updateMessage)
+      .post(messages.postMessage);
+
 router.route('/users').post(users.postUser);
 
 // routes below this need to authenticate token
 router.use(auth.authenticate);
-router.route('/messages').get(messages.getMessage);
+
+router.route('/messages')
+      .get(messages.getMessage)
+      .delete(messages.deleteMessage);
+
+router.route('/messages/all').delete(messages.deleteAllMessage);
 
 module.exports = router;
